@@ -46,3 +46,37 @@ FROM Filmes
 GROUP BY Ano
 ORDER BY Quantidade DESC;
 
+-- 8
+USE Filmes
+SELECT *
+FROM Atores
+WHERE Genero = 'M';
+
+-- 9
+USE Filmes
+SELECT *
+FROM Atores
+WHERE Genero = 'F'
+ORDER BY PrimeiroNome ASC;
+
+-- 10
+USE Filmes
+SELECT F.Nome, G.Genero
+FROM Filmes F
+INNER JOIN FilmesGenero FG ON F.Id = FG.IdFilme
+INNER JOIN Generos G ON G.Id = FG.IdGenero;
+
+-- 11
+USE Filmes
+SELECT F.Nome, G.Genero
+FROM Filmes F
+INNER JOIN FilmesGenero FG ON F.Id = FG.IdFilme
+INNER JOIN Generos G ON G.Id = FG.IdGenero
+WHERE G.Genero = N'Mistério';
+
+-- 12
+USE Filmes
+SELECT F.Nome, A.PrimeiroNome, A.UltimoNome, EF.Papel
+FROM Filmes F
+INNER JOIN dbo.ElencoFilme EF on F.Id = EF.IdFilme
+INNER JOIN dbo.Atores A on A.Id = EF.IdAtor;
